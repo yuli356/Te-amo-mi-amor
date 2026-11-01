@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es-419">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para mi amor ❤️</title>
+<style>
+:root{
+  --bg1:#fff7f3; --bg2:#ffe9ec; --ink:#5b3a44; --soft:#a77f8b;
+  --rose:#e5526a; --rosed:#c23a55; --gold:#d9a441; --line:#f0d9de;
+  --skin:#f6cfae; --hair:#5f4033;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Georgia,'Times New Roman',serif;color:var(--ink);
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  min-height:100vh;overflow-x:hidden;line-height:1.85;
+}
+.ui{font-family:'Segoe UI',system-ui,sans-serif}
+
+/* ---------- PORTADA: SOBRE ---------- */
+#portada{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;
+  background:linear-gradient(180deg,#fff7f3,#ffe3e9);
+  transition:opacity .9s ease, visibility .9s}
+#portada.abierto{opacity:0;visibility:hidden}
+.eyebrow{font-family:system-ui;font-size:12px;letter-spacing:.3em;color:var(--soft);text-transform:uppercase}
+.titulo{font-size:40px;font-style:italic;font-weight:normal;text-align:center}
+.toca{font-family:system-ui;font-size:14px;color:var(--soft);animation:latir 1.6s infinite}
+@keyframes latir{0%,100%{transform:scale(1)}12%{transform:scale(1.08)}24%{transform:scale(1)}}
+.perspectiva{perspective:1000px;width:min(360px,86vw)}
+.flap{transform-origin:top center;transition:transform .9s ease;transform-style:preserve-3d}
+.abierto .flap{transform:rotateX(180deg)}
+.carta-sobre{transition:transform 1s ease .45s}
+.abierto .carta-sobre{transform:translateY(-70px)}
+
+/* ---------- CONTENIDO ---------- */
+#contenido{display:none;max-width:740px;margin:0 auto;padding:70px 22px 90px;position:relative;z-index:2}
+#contenido.visible{display:block}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:none}
+.lead{font-size:22px;font-weight:bold;margin:0 0 16px}
+p.body{font-size:17.5px;margin:0 0 20px;text-align:left}
+@media(min-width:640px){p.body{text-align:justify}}
+.dropcap::first-letter{font-size:60px;float:left;line-height:.85;padding:6px 12px 0 0;color:var(--rose);font-style:italic}
+.quote{border-left:3px solid var(--rose);background:rgba(229,82,106,.08);border-radius:0 10px 10px 0;
+  padding:20px 24px;margin:26px 0;font-size:19px;font-style:italic}
+.quote small{display:block;margin-top:8px;font-size:13px;color:var(--soft);font-style:normal;font-family:system-ui}
+.divider{display:flex;align-items:center;gap:12px;margin:10px 0 26px;max-width:300px}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.divider svg{width:18px;height:18px;fill:var(--rose)}
+
+/* escenas */
+.escena{margin:34px 0;text-align:center}
+.escena svg{width:100%;max-width:480px;height:auto;overflow:visible;background:#fff;border-radius:16px;padding:10px;box-shadow:0 6px 18px rgba(180,80,100,.07)}
+.escena .caption{margin-top:10px;font-family:system-ui;font-size:13.5px;color:var(--soft);font-style:italic}
+/* escena 1: gala */
+@keyframes balanceo{0%,100%{transform:rotate(-2.2deg)}50%{transform:rotate(2.2deg)}}
+.gala-grupo{animation:balanceo 3.2s ease-in-out infinite;transform-origin:50% 100%;transform-box:fill-box}
+@keyframes brillo{0%,100%{opacity:.15;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+.estrella{animation:brillo 1.8s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+/* escena 2: paseo */
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.bob{animation:bob .7s ease-in-out infinite}
+@keyframes piernaA{0%,100%{transform:rotate(17deg)}50%{transform:rotate(-17deg)}}
+@keyframes piernaB{0%,100%{transform:rotate(-17deg)}50%{transform:rotate(17deg)}}
+.pierna-a{animation:piernaA .7s ease-in-out infinite;transform-origin:50% 0;transform-box:fill-box}
+.pierna-b{animation:piernaB .7s ease-in-out infinite;transform-origin:50% 0;transform-box:fill-box}
+@keyframes brazoA{0%,100%{transform:rotate(12deg)}50%{transform:rotate(-12deg)}}
+@keyframes brazoB{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(12deg)}}
+.brazo-a{animation:brazoA .7s ease-in-out infinite;transform-origin:50% 0;transform-box:fill-box}
+.brazo-b{animation:brazoB .7s ease-in-out infinite;transform-origin:50% 0;transform-box:fill-box}
+@keyframes corazonManos{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+.corazon-manos{animation:corazonManos .7s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+.ground{stroke:var(--soft);stroke-width:3;stroke-linecap:round;stroke-dasharray:2 16;animation:suelo .7s linear infinite}
+@keyframes suelo{to{stroke-dashoffset:-18}}
+/* escena 3: piquito */
+@keyframes acercar{0%,100%{transform:translateX(0)}45%,60%{transform:translateX(7px)}}
+@keyframes acercar2{0%,100%{transform:translateX(0)}45%,60%{transform:translateX(-7px)}}
+.el-lean{animation:acercar 3.4s ease-in-out infinite}
+.ella-lean{animation:acercar2 3.4s ease-in-out infinite}
+@keyframes corazonPop{0%,38%{transform:scale(0);opacity:0}50%{transform:scale(1.25);opacity:1}62%{transform:scale(1)}80%{transform:scale(1);opacity:1}100%{transform:scale(1);opacity:0}}
+.kiss-heart{animation:corazonPop 3.4s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+@keyframes blush{0%,40%,75%,100%{opacity:0}50%,65%{opacity:.7}}
+.blush{animation:blush 3.4s ease-in-out infinite}
+
+/* timeline y chips */
+.tl{display:flex;justify-content:space-between;margin:30px 0 26px;position:relative;font-family:system-ui}
+.tl::before{content:"";position:absolute;top:11px;left:7%;right:7%;height:1px;background:var(--line)}
+.tl .step{width:23%;text-align:center;position:relative}
+.tl .dot{width:22px;height:22px;border-radius:50%;background:#fff;border:1.5px solid var(--rose);
+  margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--rose);font-weight:bold}
+.tl b{display:block;font-size:13px}
+.tl span{font-size:11.5px;color:var(--soft)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:22px 0 28px}
+.chip{border-radius:999px;padding:6px 12px;font-size:12px;font-family:system-ui;
+  background:rgba(229,82,106,.12);color:var(--rosed)}
+.teamo{text-align:center;font-size:52px;font-style:italic;color:var(--rose);margin:40px 0 6px}
+.firma{text-align:center;font-size:19px;color:var(--soft);font-style:italic;margin:0 0 30px}
+
+/* corazones ambientes */
+#ambiente{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.amb{position:absolute;bottom:-40px;animation:subir linear forwards}
+@keyframes subir{to{transform:translateY(-110vh) rotate(40deg);opacity:0}}
+.burst{position:fixed;left:50%;top:50%;z-index:60;pointer-events:none;animation:explotar 1.4s ease-out forwards}
+@keyframes explotar{0%{transform:translate(0,0) scale(.4);opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.3);opacity:0}}
+
+/* musica */
+#musica{position:fixed;top:14px;right:14px;z-index:70;width:44px;height:44px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;cursor:pointer;font-size:18px;
+  box-shadow:0 4px 12px rgba(180,80,100,.15);display:none}
+#musica.visible{display:block}
+/* tarjeta cancion */
+.song-card{margin:0 0 26px;border:1px solid var(--line);border-radius:14px;background:#fff;
+  padding:16px 18px;box-shadow:0 6px 18px rgba(180,80,100,.08)}
+.song-card .tit{font-family:system-ui;font-size:12px;letter-spacing:.2em;color:var(--soft);text-transform:uppercase;margin-bottom:10px}
+.song-play{width:100%;border:none;cursor:pointer;border-radius:10px;padding:14px;
+  background:linear-gradient(90deg,#e5526a,#c23a55);color:#fff;font-family:system-ui;
+  font-size:16px;display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:transform .15s ease}
+.song-play:active{transform:scale(.97)}
+.song-alt{display:block;text-align:center;margin-top:10px;font-family:system-ui;font-size:13px;color:var(--rose)}
+@media(max-width:560px){.titulo{font-size:30px}.teamo{font-size:40px}
+.tl b{font-size:12px}.tl span{font-size:10.5px}.tl .dot{width:19px;height:19px;font-size:10px}}
+</style>
+</head>
+<body>
+
+<button id="musica" title="Música">🎵</button>
+<div id="ambiente"></div>
+
+<!-- ============ PORTADA ============ -->
+<div id="portada">
+  <div class="eyebrow">1 de noviembre · carta de nuevo mes</div>
+  <div class="titulo">Para mi amor ❤️</div>
+  <div class="perspectiva">
+    <svg viewBox="0 0 360 260" style="width:100%;overflow:visible">
+      <rect x="30" y="60" width="300" height="170" rx="10" fill="#fff" stroke="#f0d9de"/>
+      <g class="carta-sobre">
+        <rect x="55" y="18" width="250" height="160" rx="6" fill="#fffdf8" stroke="#f0d9de"/>
+        <text x="180" y="80" text-anchor="middle" font-family="Georgia" font-style="italic" font-size="22" fill="#e5526a">Para mi amor</text>
+        <path d="M180 128 l-12 -11 a8 8 0 0 1 12 -4 a8 8 0 0 1 12 4 z" fill="#e5526a"/>
+        <text x="180" y="158" text-anchor="middle" font-family="system-ui" font-size="11" letter-spacing="3" fill="#a77f8b">Tocá para abrir</text>
+      </g>
+      <path d="M30 230 V118 L180 200 L330 118 V230 Z" fill="#ffeef1" stroke="#f0d9de"/>
+      <g class="flap">
+        <path d="M30 60 L180 160 L330 60 Z" fill="#ffd9e0" stroke="#f0d9de"/>
+        <circle cx="180" cy="112" r="17" fill="#c23a55"/>
+        <path transform="translate(172,105) scale(0.66)" fill="#fff" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </g>
+    </svg>
+  </div>
+  <div class="toca">✨ Tocá el sobre ✨</div>
+</div>
+
+<!-- ============ CARTA ============ -->
+<div id="contenido">
+
+  <p class="lead reveal">Holisss.</p>
+
+  <div class="song-card reveal">
+    <div class="tit">Nuestra cancion</div>
+    <button class="song-play" id="btnCancion">&#127925; Simple Plan - Take My Hand &nbsp;&#9654;</button>
+    <a class="song-alt" href="https://www.youtube.com/results?search_query=simple+plan+take+my+hand+official+audio" target="_blank" rel="noopener">si no carga, escucharla en YouTube &#8599;</a>
+  </div>
+
+  <p class="body reveal">¡Feliz nuevo mes! Se te adelantó un poquito el regalo de nuevo mes jajaja. Bueno, mejor dicho, tenía muchas ganas de escribirte esto. No sé, estaba ordenando la pieza y empecé a pensar en todo esto como si fuera una carta, y dije: (Le voy a escribir una carta así sabe lo que pienso y lo que significa para mí).</p>
+
+  <p class="body reveal">Todo empezó hoy jajaja. Mientras acomodaba mi pieza, estaba guardando el traje y la camisa porque me los había probado para la recepción y se los mostré a mi mamá (dijo que estaba hermoso). Y bueno, el traje y todas esas cosas me hicieron acordar a nuestra cena de gala, a nuestro comienzo y a lo lindo que fue realmente. Estoy re feliz de haberme animado a pedirte que pasaras conmigo y no con la Eliana JAJAJA, pero buenoooo. Ahora sí, empieza la verdadera carta.</p>
+
+  <!-- ESCENA 1: GALA -->
+  <div class="escena reveal">
+    <svg viewBox="0 0 340 210">
+      <g class="gala-grupo">
+        <!-- EL (traje) -->
+        <g transform="translate(122,190)">
+          <line x1="-6" y1="-56" x2="-6" y2="-6" stroke="#2e2a33" stroke-width="8" stroke-linecap="round"/>
+          <line x1="6" y1="-56" x2="6" y2="-6" stroke="#2e2a33" stroke-width="8" stroke-linecap="round"/>
+          <rect x="-14" y="-112" width="28" height="58" rx="8" fill="#2e2a33"/>
+          <path d="M-6 -112 L0 -96 L6 -112 Z" fill="#fff"/>
+          <rect x="-5" y="-108" width="10" height="5" rx="2" fill="#c23a55"/>
+          <line x1="13" y1="-104" x2="43" y2="-136" stroke="#2e2a33" stroke-width="7" stroke-linecap="round"/>
+          <line x1="-13" y1="-104" x2="40" y2="-72" stroke="#2e2a33" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="0" cy="-128" r="14" fill="#f6cfae"/>
+          <path d="M-14 -132 a14 14 0 0 1 28 0 z" fill="#4a3728"/>
+        </g>
+        <!-- ELLA (vestido) -->
+        <g transform="translate(218,190)">
+          <line x1="-6" y1="-40" x2="-6" y2="-6" stroke="#f6cfae" stroke-width="7" stroke-linecap="round"/>
+          <line x1="6" y1="-40" x2="6" y2="-6" stroke="#f6cfae" stroke-width="7" stroke-linecap="round"/>
+          <path d="M-13 -96 h26 l10 54 h-46 z" fill="#d63c55"/>
+          <line x1="-11" y1="-90" x2="-43" y2="-136" stroke="#f6cfae" stroke-width="7" stroke-linecap="round"/>
+          <line x1="11" y1="-90" x2="-38" y2="-72" stroke="#f6cfae" stroke-width="7" stroke-linecap="round"/>
+          <circle cx="0" cy="-112" r="13" fill="#f6cfae"/>
+          <circle cx="0" cy="-126" r="13" fill="#6b4226"/>
+          <circle cx="0" cy="-138" r="6" fill="#6b4226"/>
+        </g>
+        <!-- manos tomadas arriba y abajo -->
+        <circle cx="166" cy="50" r="5.5" fill="#f6cfae"/>
+        <circle cx="164" cy="112" r="5.5" fill="#f6cfae"/>
+        <path transform="translate(158,16) scale(1.15)" fill="#e5526a" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      </g>
+      <g fill="#d9a441">
+        <path class="estrella" style="animation-delay:0s"   d="M60 40 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z"/>
+        <path class="estrella" style="animation-delay:.5s"  d="M290 60 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3 z"/>
+        <path class="estrella" style="animation-delay:1s"   d="M250 20 l2.5 7 7 2.5 -7 2.5 -2.5 7 -2.5 -7 -7 -2.5 7 -2.5 z"/>
+        <path class="estrella" style="animation-delay:1.4s" d="M95 15 l2.5 7 7 2.5 -7 2.5 -2.5 7 -2.5 -7 -7 -2.5 7 -2.5 z"/>
+      </g>
+    </svg>
+    <div class="caption">La cena de gala ✨ donde todo empezó</div>
+  </div>
+
+  <p class="body dropcap reveal">Realmente sos una chica hermosa para cualquier persona que te vea, y no soy la excepción. Pero lo que cambia es que yo tengo la suerte de tenerte a mi lado jajaja.</p>
+
+  <p class="body reveal">Estaba pensando en que nunca había tenido novia y en que lo que no quería era estar con una persona cualquiera. Sé que te conté varias veces esto, pero para mí es muy importante, porque sos esa chica distinta al resto, sos especial y te amo por eso.</p>
+
+  <p class="body reveal">Yo siempre quise una relación seria, con compromiso, confianza y amor. No sé bien por qué, creo que es el ejemplo que me transmitieron mis padres cuando era chico. Siempre tuve miedo de no encontrar a una chica que pensara de la misma manera, pero apareciste vos, bb, mi reina hermosa.</p>
+
+  <p class="body reveal">Sos el tipo de chica que siempre me gustó físicamente y te juro que, cuando me empezaste a gustar en serio, no había forma de alejarme de vos jajaja. No podía estar lejos tuyo, no era yo, ¡otra cosa me controlaba! Jajaja.</p>
+
+  <!-- ESCENA 2: PASEO DE LA MANO -->
+  <div class="escena reveal">
+    <svg viewBox="0 0 340 200">
+      <line class="ground" x1="15" y1="180" x2="325" y2="180"/>
+      <g>
+        <!-- EL paseando -->
+        <g transform="translate(118,180)"><g class="bob">
+          <g class="pierna-a"><line x1="-6" y1="-60" x2="-6" y2="-14" stroke="#3d4a5c" stroke-width="8" stroke-linecap="round"/></g>
+          <g class="pierna-b"><line x1="6" y1="-60" x2="6" y2="-14" stroke="#3d4a5c" stroke-width="8" stroke-linecap="round"/></g>
+          <rect x="-13" y="-104" width="26" height="46" rx="9" fill="#3f7f95"/>
+          <g class="brazo-a"><line x1="-13" y1="-96" x2="-17" y2="-62" stroke="#3f7f95" stroke-width="7" stroke-linecap="round"/><circle cx="-17" cy="-60" r="4.5" fill="#f6cfae"/></g>
+          <g class="brazo-b"><line x1="13" y1="-96" x2="30" y2="-72" stroke="#3f7f95" stroke-width="7" stroke-linecap="round"/><circle cx="31" cy="-70" r="4.5" fill="#f6cfae"/></g>
+          <circle cx="0" cy="-120" r="14" fill="#f6cfae"/>
+          <path d="M-14 -124 a14 14 0 0 1 28 0 z" fill="#4a3728"/>
+        </g></g>
+        <!-- ELLA paseando -->
+        <g transform="translate(202,180)"><g class="bob">
+          <g class="pierna-b"><line x1="-6" y1="-42" x2="-6" y2="-14" stroke="#f6cfae" stroke-width="7" stroke-linecap="round"/></g>
+          <g class="pierna-a"><line x1="6" y1="-42" x2="6" y2="-14" stroke="#f6cfae" stroke-width="7" stroke-linecap="round"/></g>
+          <path d="M-14 -96 h28 l8 50 h-44 z" fill="#e5526a"/>
+          <rect x="-12" y="-102" width="24" height="16" rx="6" fill="#e5526a"/>
+          <g class="brazo-b"><line x1="13" y1="-94" x2="18" y2="-60" stroke="#e5526a" stroke-width="7" stroke-linecap="round"/><circle cx="18" cy="-58" r="4.5" fill="#f6cfae"/></g>
+          <g class="brazo-a"><line x1="-13" y1="-94" x2="-30" y2="-72" stroke="#e5526a" stroke-width="7" stroke-linecap="round"/><circle cx="-31" cy="-70" r="4.5" fill="#f6cfae"/></g>
+          <circle cx="0" cy="-116" r="13" fill="#f6cfae"/>
+          <circle cx="0" cy="-126" r="13" fill="#6b4226"/>
+          <circle cx="-10" cy="-118" r="7" fill="#6b4226"/><circle cx="10" cy="-118" r="7" fill="#6b4226"/>
+        </g></g>
+        <!-- manos entrelazadas + corazon -->
+        <circle cx="160" cy="108" r="5.5" fill="#f6cfae"/>
+        <g class="corazon-manos"><path transform="translate(152,66) scale(1.2)" fill="#e5526a" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></g>
+      </g>
+    </svg>
+    <div class="caption">Caminando de la mano, a donde sea 💞</div>
+  </div>
+
+  <div class="quote reveal">"Quería saber si eras la persona a la que le quería dar mi primer beso, mi primer abrazo y mi primer 'te amo'. Quería saber si podías ser mi primer amor y el último, si ambos estábamos dispuestos a luchar por esto y si realmente éramos compatibles."
+  <small>— lo que pensabas antes de pedirle que sea tu novia</small></div>
+
+  <!-- ESCENA 3: PIQUITO -->
+  <div class="escena reveal">
+    <svg viewBox="0 0 340 190">
+      <path class="kiss-heart" transform="translate(158,18) scale(1.5)" fill="#e5526a" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+      <!-- EL -->
+      <g class="el-lean"><g transform="translate(118,108)">
+        <rect x="-16" y="10" width="32" height="52" rx="10" fill="#3f7f95"/>
+        <circle cx="0" cy="-14" r="27" fill="#f6cfae"/>
+        <path d="M-27 -22 a27 27 0 0 1 54 0 l-6 -4 a21 21 0 0 0 -42 0 z" fill="#4a3728"/>
+        <path d="M6 -18 q4 4 8 0" stroke="#5b3a44" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M18 -14 q4 4 8 0" stroke="#5b3a44" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M16 -2 q5 4 9 0" stroke="#5b3a44" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <ellipse class="blush" cx="16" cy="4" rx="6" ry="3.5" fill="#f2a0a8"/>
+      </g></g>
+      <!-- ELLA -->
+      <g class="ella-lean"><g transform="translate(222,108)">
+        <rect x="-15" y="10" width="30" height="52" rx="10" fill="#e5526a"/>
+        <circle cx="0" cy="-14" r="25" fill="#f6cfae"/>
+        <circle cx="0" cy="-22" r="25" fill="#6b4226"/>
+        <path d="M-25 -18 a25 25 0 0 0 8 34 l-2 -14 z" fill="#6b4226"/>
+        <path d="M25 -18 a25 25 0 0 1 -8 34 l2 -14 z" fill="#6b4226"/>
+        <path d="M-18 -14 q-4 4 -8 0" stroke="#5b3a44" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M-6 -18 q-4 4 -8 0" stroke="#5b3a44" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M-25 -2 q-5 4 -9 0" stroke="#5b3a44" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <ellipse class="blush" cx="-16" cy="4" rx="6" ry="3.5" fill="#f2a0a8"/>
+      </g></g>
+    </svg>
+    <div class="caption">El primer piquito 💋 (y los que vienen)</div>
+  </div>
+
+  <div class="tl reveal">
+    <div class="step"><div class="dot">1</div><b>La cena de gala</b><span>donde todo empezó</span></div>
+    <div class="step"><div class="dot">2</div><b>Amigos</b><span>un poquito más que amigos</span></div>
+    <div class="step"><div class="dot">3</div><b>Novios</b><span>un año y medio juntos</span></div>
+    <div class="step"><div class="dot">4</div><b>Para siempre</b><span>la casa, el negocio, la vida</span></div>
+  </div>
+
+  <div class="chips reveal">
+    <span class="chip">Primeras flores 💐</span>
+    <span class="chip">Primer beso</span>
+    <span class="chip">Primer abrazo</span>
+    <span class="chip">Primer "te amo"</span>
+  </div>
+
+  <p class="body reveal">Pero no quería que todo quedara solamente en lo físico. Quería conocerte un poquito más antes de estar seguro y pedirte que fueras mi novia.</p>
+
+  <p class="body reveal">Así que primero decidí que era mejor que fuéramos amigos, aunque un poquito más que amigos jajaja. Ya que fuiste la primera persona a la que le llevé flores. Y digo persona porque a nadie en el mundo le había regalado flores de esa manera en la que te las di a vos.</p>
+
+  <p class="body reveal">Tenía miedo de que no fueras lo que yo pensaba, de que no tuvieras la misma idea del noviazgo o de una familia que tenía yo. Pero, con el tiempo que nos dimos para conocernos como amigos, me di cuenta de que fue perfecto. Porque nos conocimos de una manera tan hermosa que, no sé, me dejó recuerdos tan lindos que hasta quiero llorar de la emoción cuando los pienso.</p>
+
+  <p class="body reveal">Pero, en fin, amor, nunca fuiste una casualidad ni una cuestión de suerte. Fuiste una persona que me gustó y con la que no quise vivir solamente algo pasajero. Quise conocerte antes de entregarte mi amor como novio. Quería saber qué clase de persona eras antes de que pasaras a ser lo que sos hoy en día para mí.</p>
+
+  <p class="body reveal">Amor, ya estamos en una relación de un año y medio y es tan hermosa… Realmente casi no tenemos problemas entre nosotros, y eso me llena de una felicidad que no te imaginás. Te agradezco por todo lo lindo que me dejás vivir a tu lado. Gracias por ser mi amiga y por ser todavía más bonita como novia.</p>
+
+  <p class="body reveal">Sé que todavía falta tiempo y dinero, pero, cuando tenga la más mínima posibilidad, voy a pedirte que seas mi esposa, y nos vamos a conseguir un departamento y vivir juntos para siempre jsjsjs. Mientras tanto, tenemos que planear en nuestra casa. Y nuestro negocio, y todos esos planes que tenemos para más adelante, y toda esa vida que quiero llevar a tu lado.</p>
+
+  <p class="body reveal">Te amo, mi amor. Sos el amor de mi vida y nunca quiero que dudes de mi amor por vos. Sos una parte enorme de mi vida y doy hasta lo que no tengo por vos, bb.</p>
+
+  <p class="body reveal">Te amo muchísimo y espero que te guste esta cartita. La escribí porque quería que supieras un poquito más de todo lo que pasa por mi cabeza cuando pienso en nosotros y en todo lo que vivimos.</p>
+
+  <div class="divider reveal"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+
+  <div class="teamo reveal">Te amo.</div>
+  <p class="firma reveal">Con amor, tu alma gemela jsjsjs. 😘❤️</p>
+
+</div>
+
+<script>
+var HEART='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z';
+function svgHeart(color,size){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  s.setAttribute('viewBox','0 0 24 24');s.innerHTML='<path d="'+HEART+'" fill="'+color+'"/>';
+  s.style.width=size+'px';s.style.height=size+'px';return s;}
+
+/* corazones ambientes */
+setInterval(function(){
+  if(!document.getElementById('contenido').classList.contains('visible'))return;
+  var amb=document.getElementById('ambiente');
+  var h=svgHeart('rgba(229,82,106,'+(0.12+Math.random()*0.25)+')',12+Math.random()*20);
+  h.classList.add('amb');
+  h.style.left=Math.random()*100+'%';
+  h.style.animationDuration=(7+Math.random()*6)+'s';
+  amb.appendChild(h);
+  h.addEventListener('animationend',function(){h.remove()});
+},900);
+
+/* aparicion al hacer scroll */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){
+  if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+/* musica suave con WebAudio */
+var ctx=null,playing=false,musicTimer=null;
+function nota(frec,t,gan){
+  var o=ctx.createOscillator(),g=ctx.createGain();
+  o.type='triangle';o.frequency.value=frec;
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(gan,t+.03);
+  g.gain.exponentialRampToValueAtTime(.0001,t+.5);
+  o.connect(g);g.connect(ctx.destination);o.start(t);o.stop(t+.55);
+}
+var melodia=[523.25,659.25,783.99,659.25,587.33,659.25,783.99,659.25,
+             523.25,659.25,783.99,1046.5,987.77,783.99,659.25,587.33];
+var paso=0;
+function loop(){
+  if(!playing)return;
+  nota(melodia[paso%melodia.length],ctx.currentTime+.02,.045);
+  paso++;
+  musicTimer=setTimeout(loop,300);
+}
+var btnMusica=document.getElementById('musica');
+function toggleMusica(){
+  if(!ctx)ctx=new (window.AudioContext||window.webkitAudioContext)();
+  playing=!playing;
+  btnMusica.textContent=playing?'🔇':'🎵';
+  if(playing){ctx.resume();loop()}else clearTimeout(musicTimer);
+}
+btnMusica.addEventListener('click',toggleMusica);
+
+/* abrir el sobre */
+var portada=document.getElementById('portada');
+function abrir(){
+  if(portada.classList.contains('abierto'))return;
+  portada.classList.add('abierto');
+  var cont=document.getElementById('contenido');
+  setTimeout(function(){cont.classList.add('visible');window.scrollTo(0,0)},800);
+  /* estallido de corazones */
+  for(var i=0;i<26;i++){
+    (function(i){setTimeout(function(){
+      var h=svgHeart('#e5526a',12+Math.random()*18);
+      h.classList.add('burst');
+      var ang=Math.random()*Math.PI*2,dist=120+Math.random()*220;
+      h.style.setProperty('--dx',Math.cos(ang)*dist+'px');
+      h.style.setProperty('--dy',Math.sin(ang)*dist+'px');
+      document.body.appendChild(h);
+      setTimeout(function(){h.remove()},1500);
+    },i*30)})(i);
+  }
+}
+var btnCancion=document.getElementById('btnCancion');
+btnCancion.addEventListener('click',function(){
+  var iframe=document.createElement('iframe');
+  iframe.width='100%';iframe.height='166';iframe.frameBorder='0';iframe.scrolling='no';
+  iframe.allow='autoplay';
+  iframe.src='https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/simpleplanband/take-my-hand-1&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&visual=false';
+  btnCancion.parentNode.replaceChild(iframe,btnCancion);
+});
+portada.addEventListener('click',abrir);
+</script>
+</body>
+</html>
